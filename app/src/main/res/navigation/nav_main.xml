@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@+id/teams_list_fragment">
+
+    <fragment
+        android:id="@+id/team_detail_fragment"
+        android:name="com.tinybrainz.football.ui.TeamDetailsFragment"
+        android:label="@string/user_fragment_label"
+        tools:layout="@layout/team_details_fragment">
+
+        <argument
+            android:name="teamId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/teams_list_fragment"
+        android:name="com.tinybrainz.football.ui.TeamListFragment"
+        android:label="@string/user_list_fragment_label"
+        tools:layout="@layout/team_list_fragment">
+        <argument
+            android:name="teamId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/showUser"
+            app:destination="@id/team_detail_fragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/teams_list_fragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+</navigation>

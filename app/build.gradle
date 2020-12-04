@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'com.tinybrainz.football.OpenClass'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.tinybrains.football"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    // Support libraries
+    implementation "androidx.appcompat:appcompat:$versionAppcompat"
+    implementation "androidx.core:core-ktx:$versionKTXCore"
+    implementation "androidx.fragment:fragment-ktx:$versionKTXFragment"
+
+    implementation "androidx.constraintlayout:constraintlayout:$versionConstraintlayout"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+
+    // Retrofit 2
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$versionMoshi"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Hilt ViewModel extension
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    // Testing
+    testImplementation "junit:junit:$versionJUnit"
+
+    androidTestImplementation "androidx.test.ext:junit:$versionJUnitExt"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versionEspressoCore"
+
+    testImplementation "android.arch.core:core-testing:$verionArchCore"
+    androidTestImplementation "android.arch.core:core-testing:$verionArchCore"
+
+    implementation "com.squareup.okhttp3:okhttp:$versionMockwebserver"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$versionMockwebserver"
+
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoAndroidVersion"
+}

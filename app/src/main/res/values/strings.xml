@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TinyBrainz</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="user_fragment_label">Team Details</string>
+    <string name="user_name_placeholder">Tejaswee Shah</string>
+    <string name="user_login_placeholder">tejaswee</string>
+    <string name="user_url_placeholder">https://github.com/TejasweeShah/football</string>
+    <string name="user_list_fragment_label">TinyBrainz</string>
+    <string name="title_activity_startup">StartupActivity</string>
+    <string name="logout">Logout</string>
+</resources>
